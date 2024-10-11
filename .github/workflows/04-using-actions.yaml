@@ -3,7 +3,7 @@ name: 04 - Using Actions
 run-name: 04 - Using Actions
 
 on:
-    push:
+    workflow_dispatch:
 
 env:
     directory: 04-using-actions/my-app

@@ -1,17 +1,29 @@
-name: 05 - 2 - Event Filters and Activity Types
+name: 06 - Contexts
 
-run-name: 02 - 2 - Event Filters and Activity Types
+run-name: 02 - Contexts
 
 on:
     push:
-        branches: [main]
-    pull_request:
-        types: [closed]
+    workflow_dispatch:
 
 jobs:
-    echo:
+    echo-data:
         runs-on: ubuntu-latest
         steps:
+            - name: Display Information
+              run: |
+                echo "${{github.event_name}}"
+                echo "${{github.ref}}"
+                echo "${{github.sha}}"
+                echo "${{github.actor}}"
+                echo "${{github.workflow}}"
+                echo "${{github.run_id}}"
+                echo "${{github.run_number}}"
+
+            - name: Retrieve Variable
+              run: echo ${{vars.MY_VAR}}
+
+
             - name: Run
               run: echo "Running whenever a PR is closed"
 

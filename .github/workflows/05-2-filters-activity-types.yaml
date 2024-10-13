@@ -1,0 +1,36 @@
+name: 06 - Contexts
+
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
+
+on:
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                description: Debug
+                type: boolean
+                required: false
+                default: true
+
+jobs:
+    echo-data:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Information
+              run: |
+                echo "${{github.event_name}}"
+                echo "${{github.ref}}"
+                echo "${{github.sha}}"
+                echo "${{github.actor}}"
+                echo "${{github.workflow}}"
+                echo "${{github.run_id}}"
+                echo "${{github.run_number}}"
+
+            - name: Retrieve Variable
+              run: echo ${{vars.MY_VAR}}
+
+
+            - name: Run
+              run: echo "Running whenever a PR is closed"
+
+    

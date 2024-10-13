@@ -1,6 +1,6 @@
 name: 07 - Using Expressions
 
-run-name: 07 - Using Expressions
+run-name: 07 - Using Expressions | DEBUG - ${{inputs.debug && 'ON' || 'OFF'}}
 
 on:
     push:
@@ -25,7 +25,7 @@ jobs:
                echo "Runner OS: ${{runner.os}}"
 
             - name: "[debug] Print when triggered from main"
-              if: ${{inputs.debug}} == true && ${{github.ref_name}} == 'main'
+              if: ${{inputs.debug}} == 'true' && ${{github.ref_name}} == 'main'
               run: "I was triggered from main branch"
 
             - name: Hello World

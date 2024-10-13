@@ -3,7 +3,6 @@ name: 06 - Contexts
 run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 
 on:
-    push:
     workflow_dispatch:
         inputs:
             debug:
@@ -12,9 +11,16 @@ on:
                 required: false
                 default: true
 
+env:
+    MY_WORKFLOW_VAR: 'workflow'
+    MY_OVERWRITTEN_VAR: 'workflow'
+
 jobs:
     echo-data:
         runs-on: ubuntu-latest
+        env:
+            MY_JOB_JAR: 'job'
+            MY_OVERWRITTEN_VAR: 'job'
         steps:
             - name: Display Information
               run: |
@@ -26,11 +32,19 @@ jobs:
                 echo "${{github.run_id}}"
                 echo "${{github.run_number}}"
 
-            - name: Retrieve Variable
+            - name: Retrieve Variables - Step
               run: echo ${{vars.MY_VAR}}
 
+            - name: Print Env Variables
+              run: |
+                echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+                echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
+              env:
+                MY_OVERWRITTEN_VAR: 'step'
 
-            - name: Run
-              run: echo "Running whenever a PR is closed"
+            - name: Prinv Env Variables - Global
+              run: |
+                echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+                echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
 
     

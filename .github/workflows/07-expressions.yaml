@@ -3,7 +3,6 @@ name: 07 - Using Expressions
 run-name: 07 - Using Expressions | DEBUG - ${{inputs.debug && 'ON' || 'OFF'}}
 
 on:
-    push:
     workflow_dispatch:
         inputs:
             debug:
@@ -17,7 +16,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: "[debug] Print start-up data"
-              if: ${{inputs.debug}} == 'true'
+              if: inputs.debug
               run: |
                echo "Triggered By: ${{github.event_name}}"
                echo "Branch: ${{github.ref_name}}"
@@ -25,7 +24,7 @@ jobs:
                echo "Runner OS: ${{runner.os}}"
 
             - name: "[debug] Print when triggered from main"
-              if: ${{inputs.debug}} == 'true' && ${{github.ref_name}} == 'main'
+              if: inputs.debug && github.ref_name == 'main'
               run: echo "I was triggered from main branch"
 
             - name: Hello World

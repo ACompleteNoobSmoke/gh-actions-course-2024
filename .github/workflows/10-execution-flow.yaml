@@ -25,7 +25,7 @@ jobs:
               run: echo "Running tests..."
             
             - name: Failing tests
-              if: inputs.pass-unit-tests == 'false'
+              if: inputs.pass-unit-tests == false
               run: |
                 echo "Failed unit test"
                 exit 1

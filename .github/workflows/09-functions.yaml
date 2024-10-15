@@ -19,6 +19,7 @@ jobs:
                 cat << EOF
                 ${{toJson(github.event.pull_request.labels)}}
                 EOF
+                exit 1
 
             - name: Bug step
               if: ${{failure() && !cancelled() && contains(github.event.pull_request.title, 'fix')}}

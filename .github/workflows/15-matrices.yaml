@@ -9,14 +9,34 @@ jobs:
         runs-on: ubuntu-latest
         name: ${{matrix.os}}-${{matrix.version}}
         strategy:
+            fail-fast: true
             matrix:
                 os: [ubuntu-latest, windows-latest]
                 version: [18.x, 20.x, 21.x]
+                include:
+                    - os: ubuntu-latest
+                      version: 16.x
+                    - os: ubuntu-latest
+                      version: 21.x
+                      tag: experimental
         steps:
             - name: Setup Node
               uses: actions/setup-node@v4
               with:
                 node-version: ${{matrix.version}}
+
+            - name: Fail if experimental
+              if: matrix.tag == 'experimental'
+              run: exit 1
+
+            - name: Perform some tests
+              run: sleep 10s
+
+            - name: Upload Test Results
+              run: echo "Uploading test results"
+
+
+                
 
 
 

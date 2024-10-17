@@ -1,6 +1,6 @@
 name: 17 - 1 - Custom Actions - Composite
 
-run-name: 17 - 1 - Custom Actions - Composite | Env - ${{inputs.target-env}}
+run-name: 17 - 1 - Custom Actions - Composite | Env - ${{inputs.target-env}} | Version - ${{inputs.node-version}}
 
 env:
     working-directory: 17-custom-actions/react-app

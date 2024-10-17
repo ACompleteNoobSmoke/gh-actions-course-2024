@@ -29,7 +29,13 @@ runs:
         key: your-key-prefix-${{inputs.target-env}}-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }}
         path: ${{ inputs.working-dir }}/node_modules
 
+    - name: Command
+      shell: bash
+      id: command
+      if: inputs.target-env != 'dev' 
+      run: echo "CI=npm ci --omit=dev" >> $GITHUB_OUTPUT
+
     - name: Install Dependencies
       shell: bash
-      run: ${{ inputs.target-env == 'dev' && "npm ci" || "npm ci --omit=dev" }}
+      run: ${{steps.command.outputs.CI || "npm ci"}}
       working-directory: ${{inputs.working-dir}}

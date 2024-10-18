@@ -24,6 +24,10 @@ on:
                 required: false
                 default: false
 
+permissions:
+    contents: write
+    pull-requests: write
+
 jobs:
     dependency-update:
         runs-on: ubuntu-latest

@@ -3,7 +3,7 @@ name: 18 - 2 - Resusable Workflows
 run-name: 18 - 2 - Reusable Workflows -- ${{inputs.directory}}
 
 on:
-    workflow_call:
+    workflow_dispatch:
         inputs:
             directory:
                 description: Target Directory

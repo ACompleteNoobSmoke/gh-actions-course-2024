@@ -8,6 +8,16 @@ on:
                 type: string
                 required: false
                 default: "https://www.google.com"
+            max_trials:
+                description: Maximum trials until action fails
+                type: number
+                required: false
+                default: '10'
+            delay:
+                description: Delay in seconds between trials
+                type: number
+                required: false
+                default: '5'
 
 jobs:
     ping-url:

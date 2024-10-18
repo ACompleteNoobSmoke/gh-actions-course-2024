@@ -1,0 +1,28 @@
+name: 18 - 2 - Resusable Workflows
+
+run-name: 18 - 2 - Reusable Workflows -- ${{inputs.directory}}
+
+on:
+    workflow_call:
+        inputs:
+            directory:
+                description: Target Directory
+                type: string
+                required: false
+                default: "Spiderman"
+
+jobs:
+    deploy:
+        uses: ./.github/workflows/18-1-reusable-workflows.yaml
+        with:
+            target-directory: ${{inputs.directory}}
+
+    print-outputs:
+        runs-on: ubuntu-latest
+        needs: deploy
+        steps:
+            - name: Print outputs
+              run: |
+                echo "Build Status: ${{needs.deploy.outputs.build-status}}"
+                echo "URL: ${{needs.deploy.outputs.url}}"
+

@@ -4,6 +4,25 @@ run-name: 17 - 2 - Custom Actions - JS
 
 on:
     workflow_dispatch:
+        inputs:
+            base-branch:
+                description: Base Branch
+                type: string
+                required: false 
+            target-branch:
+                description: Target Branch
+                type: string
+                required: false
+            working-dir:
+                description: Working Directory
+                type: string
+                required: false
+                default: .
+            debug:
+                description: Debug
+                type: boolean
+                required: false
+                default: false
 
 jobs:
     dependency-update:
@@ -14,4 +33,12 @@ jobs:
 
             - name: Check for dependency updates
               uses: ./.github/actions/js-dependency-update
+              with:
+                base-branch: ${{inputs.base-branch}}
+                target-branch: ${{inputs.target-branch}}
+                working-directory: ${{inputs.working-dir}}
+                debug: ${{inputs.debug}}
+                gh-token: ${{secrets.GITHUB_TOKEN}}
+
+
 

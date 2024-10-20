@@ -17,5 +17,5 @@ jobs:
              uses: ./.github/actions/docker-ping-url
              with:
                 url: www.thisdoesnotexist.com
-                max-trails: 20
+                max-trials: 20
                 delay: 5

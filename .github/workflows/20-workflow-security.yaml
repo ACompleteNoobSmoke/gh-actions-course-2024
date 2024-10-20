@@ -23,6 +23,7 @@ jobs:
 
     safer-pr:
         runs-on: ubuntu-latest
+        continue-on-error: true
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
@@ -38,3 +39,14 @@ jobs:
                 fi 
               env:
                 title: ${{ github.event.pull_request.title }}
+
+    js-safer-pr:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Check PR Title
+              uses: ./.github/actions/js-safe-title-check
+              with:
+                pr-title: ${{ github.event.pull_request.title }}

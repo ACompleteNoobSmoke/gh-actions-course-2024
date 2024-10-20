@@ -3,9 +3,12 @@ name: 20 - Workflow Security
 on:
     pull_request
 
+
+
 jobs:
     unsafe-pr:
         runs-on: ubuntu-latest
+        continue-on-error: true
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4

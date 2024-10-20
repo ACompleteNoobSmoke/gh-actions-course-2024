@@ -38,3 +38,9 @@ jobs:
                 fi 
               env:
                 title: ${{ github.event.pull_request.title }}
+
+    js-safer-pr:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4

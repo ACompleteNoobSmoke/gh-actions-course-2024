@@ -1,0 +1,13 @@
+name: Check PR 
+description: Check PR Actions
+
+runs:
+  using: node20
+  main: index.js
+
+inputs:
+  pr-title:
+    description: PR Title
+    required: true 
+
+  

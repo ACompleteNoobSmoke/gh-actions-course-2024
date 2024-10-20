@@ -11,7 +11,6 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Check PR title
-              shell: bash
               run: |
                 title=${{ github.event.pull_request.title }}
                 if [[ $title =~ ^feat ]]; then

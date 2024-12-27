@@ -1,0 +1,29 @@
+name: Auto Commit WF
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: '*/5 * * * *'
+
+jobs:
+    commit:
+        name: Commit Code
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Print Date
+              run: echo date >> text.txt
+
+            - name: Setup Git User
+              run: |
+                  git config user.name "ACompleteNoobSmoke"
+                  git config user.email "omoruyiomofonmwan@yahoo.com"
+
+            - name: Commit Code
+              run: |
+                git pull -p
+                git add .
+                git commit -m"Testing commit"
+                git push

@@ -1,9 +1,9 @@
 name: Auto Commit WF
 
 on:
-    workflow_dispatch:
+    #workflow_dispatch:
     schedule:
-        - cron: '*/5 * * * *'
+        - cron: '*/10 * * * *'
 
 jobs:
     commit:
